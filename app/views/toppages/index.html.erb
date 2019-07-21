@@ -1,0 +1,24 @@
+<% if logged_in? %>
+	<p>Login user: <%= current_user.name %></p>
+	<%= form_with(model: @post,local: true)do |f| %>
+	<div class='post_group'>
+		<%= f.label :title, 'title' %>
+		<%= f.text_field :title, class:'form-control' %>
+	</div>
+
+	<div class='post_group'>
+		<%= f.label :content, 'content' %>
+		<%= f.text_area :content, class:'form-control',row:2 %>
+	</div>
+	<%= f.submit 'Create New Post',class:'btn btn-primary btn-lg' %>
+	<% end %>
+
+	<%= render 'posts/posts', posts: @posts %>
+
+<% else %>
+	<div class="jumbotron">
+		<div class="container">
+	    <h1>POST No.3</h1>
+		</div>
+	</div>
+<% end %>

@@ -1,0 +1,39 @@
+<h1>User Info.</h1>
+<div class='row'>
+  <div class='col-xs-4'>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        NAME: <%= @user.name %>
+      </div>
+      <div class="panel-body">
+        EMAIL: <%= @user.email %>
+      </div>
+    </div>
+  </div>
+  <div class='col-xs-8'>
+    <ul class="nav nav-tabs">
+    	<li role="presentation" class="<%= 'active' if current_page?(user_path(@user.id)) %>"><%= link_to user_path(@user.id) do %>My Posts<span class="badge"><%= @count_posts %></span><% end %></li>
+    	<li role="presentation" class="<%= 'active' if current_page?(likings_user_path(@user.id)) %>"><%= link_to likings_user_path(@user.id) do %>My Favs<span class="badge"><%= @count_favs %></span><% end %></li>
+    </ul>
+
+    <ul class="media-list">
+      <% @posts.each do |post| %>
+      <% unless post.user.id == @user.id %>
+          <% if current_user.favorites.pluck(:post_id).include?(post.id) %>
+          	<li class="media">
+          		<h4 class="media-left" style="color: blue;">
+                    <%= post.user.name %>:
+                    <%= link_to 'お気に入りを解除',favorite_path(id: post.id),method: :delete,class:'btn btn-danger btn-xs' %>
+          		</h4>
+          		<div class="media-body">
+          			<h4 class="media-heading"><%= post.title %></h4>
+          			<%= post.content %>
+          		</div>
+          	</li>
+          <% end %>
+        <% end %>
+      <% end %>
+    </ul>
+
+  </div>
+</div>
