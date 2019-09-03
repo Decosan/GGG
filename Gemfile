@@ -64,11 +64,11 @@ group :development do
   gem 'pry-doc' # extend pry document support
   gem 'rubocop'
   gem 'rails_best_practices'
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
 end
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'kaminari'
-# gem 'ed25519'
-# gem 'bcrypt_pbkdf'
